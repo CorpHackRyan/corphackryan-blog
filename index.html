@@ -78,6 +78,51 @@
             <p id="last-updated" class="last-updated meta"></p>
           </div>
         </div>
+        <div class="container hero-contact" id="newsletter">
+          <a
+            href="mailto:ryanoconnor.dev@gmail.com"
+            class="social-link"
+            aria-label="Email"
+            title="Email"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4 7v10h16V7l-8 5.2zM5.7 7l6.3 4.1L18.3 7H5.7z" />
+            </svg>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ryan-oconnor01/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="LinkedIn"
+            title="LinkedIn"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.94 8.5H3.56V20h3.38V8.5zM5.25 3A2.25 2.25 0 1 0 5.25 7.5 2.25 2.25 0 0 0 5.25 3zM20.44 13.39c0-3.53-1.88-5.17-4.39-5.17-2.03 0-2.94 1.11-3.44 1.9V8.5H9.22V20h3.39v-5.69c0-1.5.28-2.95 2.14-2.95 1.83 0 1.86 1.71 1.86 3.04V20H20v-6.61z" />
+            </svg></a
+          >
+          <a
+            href="https://www.youtube.com/@ryanoconnor_guitar"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="YouTube"
+            title="YouTube"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M23 12s0-3.1-.39-4.59a3 3 0 0 0-2.11-2.12C19.01 5 12 5 12 5s-7.01 0-8.5.29A3 3 0 0 0 1.39 7.4C1 8.9 1 12 1 12s0 3.1.39 4.59a3 3 0 0 0 2.11 2.12C4.99 19 12 19 12 19s7.01 0 8.5-.29a3 3 0 0 0 2.11-2.12C23 15.1 23 12 23 12zm-13.2 3.5V8.5l6 3.5-6 3.5z" />
+            </svg></a
+          >
+          <a
+            href="https://github.com/CorpHackRyan"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="GitHub"
+            title="GitHub"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2C6.48 2 2 6.58 2 12.22c0 4.5 2.87 8.31 6.84 9.66.5.1.68-.22.68-.49 0-.24-.01-1.03-.02-1.87-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.12-1.49-1.12-1.49-.92-.64.07-.63.07-.63 1.01.07 1.55 1.06 1.55 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.27 2.75 1.05A9.33 9.33 0 0 1 12 7.9c.85 0 1.7.12 2.5.36 1.9-1.32 2.75-1.05 2.75-1.05.54 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.31.68.93.68 1.88 0 1.36-.01 2.45-.01 2.79 0 .27.18.59.69.49A10.2 10.2 0 0 0 22 12.22C22 6.58 17.52 2 12 2z" />
+            </svg></a
+          >
+        </div>
       </section>
 
       <section id="latest" class="section">
@@ -85,6 +130,9 @@
           <div class="section-title-row">
             <h2>Latest Articles</h2>
             <div class="list-controls">
+              <button id="random-post" class="random-post-btn" type="button">
+                Random post
+              </button>
               <label class="legacy-toggle" for="toggle-legacy">
                 <input type="checkbox" id="toggle-legacy" />
                 Show legacy entries
@@ -93,8 +141,28 @@
             </div>
           </div>
 
+          <div class="discover-controls">
+            <input
+              id="post-search"
+              class="post-search"
+              type="search"
+              placeholder="Search posts..."
+              aria-label="Search posts"
+            />
+            <div id="tag-filters" class="tag-filters"></div>
+          </div>
+
+          <article class="now-card" id="topics">
+            <p class="tag">Now</p>
+            <h3>This Week I Am Building Out This Blog</h3>
+            <p>
+              I am cleaning up old entries, tuning design details, and keeping
+              this as a live notebook for whatever computer project I touch.
+            </p>
+          </article>
+
           <div class="post-grid">
-            <article class="post-card">
+            <article class="post-card" data-tags="engineering api architecture web">
               <p class="tag">Engineering</p>
               <p class="post-date">February 16, 2026</p>
               <h3>
@@ -102,13 +170,21 @@
                   >How to design APIs that survive version 1</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">engineering</span>
+                <span class="chip">api</span>
+                <span class="chip">web</span>
+              </p>
               <p>
                 A practical approach to API contracts, change management, and
                 backward compatibility in fast-moving teams.
               </p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy react linux java numpy"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">June 3, 2022</p>
               <h3>
@@ -116,12 +192,20 @@
                   >React Tutorials, Linux Setup Hurdles, and Career Momentum</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">react</span>
+                <span class="chip">linux</span>
+              </p>
               <p>
                 Imported from your older site content (11th blog entry).
               </p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy sql python regex java"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">April 8, 2022</p>
               <h3>
@@ -129,10 +213,18 @@
                   >SQL Workbench, Python File Scans, and Regex Extraction</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">sql</span>
+                <span class="chip">python</span>
+              </p>
               <p>Imported from your older site content (10th blog entry).</p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy python yaml xml csv xlsx"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">March 14, 2022</p>
               <h3>
@@ -140,10 +232,18 @@
                   >Resumes, Interviews, and CSV/XLSX-to-YAML Lessons</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">python</span>
+                <span class="chip">yaml</span>
+              </p>
               <p>Imported from your older site content.</p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy web og seo metadata"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">February 24, 2022</p>
               <h3>
@@ -151,10 +251,18 @@
                   >How I Added Open Graph Link Previews</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">web</span>
+                <span class="chip">seo</span>
+              </p>
               <p>Imported from your older site content.</p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy aws php database cloud linux"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">February 23, 2022</p>
               <h3>
@@ -162,10 +270,18 @@
                   >Cloud Labs, PHP DB Friction, and a Windows XP Throwback</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">aws</span>
+                <span class="chip">php</span>
+              </p>
               <p>Imported from your older site content.</p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy git github cli debugging"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">February 9, 2022</p>
               <h3>
@@ -173,10 +289,18 @@
                   >Debugging Git Push Failures and GitHub File Limits</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">git</span>
+                <span class="chip">github</span>
+              </p>
               <p>Imported from your older site content.</p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy mariadb mysql aws cloud"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">February 8, 2022</p>
               <h3>
@@ -184,10 +308,18 @@
                   >MariaDB Fundamentals, AWS Study, and Project Pressure</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">mariadb</span>
+                <span class="chip">aws</span>
+              </p>
               <p>Imported from your older site content.</p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy apache git html css"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">January 2, 2022</p>
               <h3>
@@ -195,10 +327,18 @@
                   >Apache Setup Notes, Git CLI Practice, and HTML5 Lessons</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">apache</span>
+                <span class="chip">git</span>
+              </p>
               <p>Imported from your older site content.</p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy debugging learning web"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">January 2, 2022</p>
               <h3>
@@ -206,10 +346,18 @@
                   >Recovering from COVID and Rebuilding My Dev Momentum</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">learning</span>
+                <span class="chip">web</span>
+              </p>
               <p>Imported from your older site content.</p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy css mobile design"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">December 28, 2021</p>
               <h3>
@@ -217,10 +365,18 @@
                   >CSS Hover Effects, Layout Tweaks, and Mobile Questions</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">css</span>
+                <span class="chip">mobile</span>
+              </p>
               <p>Imported from your older site content.</p>
             </article>
 
-            <article class="post-card legacy-card">
+            <article
+              class="post-card legacy-card"
+              data-tags="legacy html css journey"
+            >
               <p class="tag">Legacy Archive</p>
               <p class="post-date">December 28, 2021</p>
               <h3>
@@ -228,19 +384,32 @@
                   >Launching My First Tech Blog and Learning HTML by Doing</a
                 >
               </h3>
+              <p class="chip-row">
+                <span class="chip">legacy</span>
+                <span class="chip">html</span>
+                <span class="chip">css</span>
+              </p>
               <p>
                 Imported from your older site content.
               </p>
             </article>
           </div>
+
+          <p id="no-results" class="no-results meta is-hidden">
+            No posts match the current filters. Try clearing search or selecting a different tag.
+          </p>
         </div>
       </section>
+
     </main>
 
     <footer id="about" class="site-footer">
       <div class="container footer-inner">
         <p><strong>CorpHackRyan</strong> • Tech Blog</p>
-        <p class="meta">© <span id="year"></span> All rights reserved.</p>
+        <p class="meta">
+          <a href="posts/changelog.html">Changelog</a> • ©
+          <span id="year"></span> All rights reserved.
+        </p>
       </div>
     </footer>
 

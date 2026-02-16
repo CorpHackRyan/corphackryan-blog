@@ -39,6 +39,13 @@ body {
     radial-gradient(circle at 90% 10%, #d8fbf8 0%, transparent 30%),
     var(--bg);
   line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 .container {
@@ -199,8 +206,85 @@ body {
   margin: 0.95rem 0 0;
 }
 
+.hero-contact {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+.hero-contact a {
+  text-decoration: none;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.38rem 0.75rem;
+  background: color-mix(in srgb, var(--card) 70%, transparent);
+}
+
+.hero-contact a:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.social-link {
+  width: 38px;
+  height: 38px;
+  padding: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.changelog-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.1rem 1.2rem;
+}
+
+.changelog-card h1,
+.changelog-card h2 {
+  margin: 0.3rem 0 0.7rem;
+  font-size: clamp(1.2rem, 2.3vw, 1.7rem);
+}
+
+.changelog-card ul {
+  margin: 0;
+  padding-left: 1.05rem;
+  color: var(--muted);
+}
+
+.changelog-card li {
+  margin-bottom: 0.35rem;
+}
+
 .section {
   padding: 2rem 0 5rem;
+}
+
+#latest.section {
+  position: relative;
+  padding-top: 3.2rem;
+}
+
+#latest.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1080px, 92%);
+  border-top: 1px solid color-mix(in srgb, var(--line) 78%, var(--accent) 22%);
 }
 
 .section-title-row {
@@ -215,6 +299,73 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.discover-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.post-search {
+  min-width: 230px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+}
+
+.post-search:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  outline-offset: 1px;
+}
+
+.tag-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tag-filter-btn {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem;
+  cursor: pointer;
+  text-transform: lowercase;
+}
+
+.tag-filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.tag-filter-btn.is-active {
+  background: color-mix(in srgb, var(--accent) 14%, var(--card));
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  color: var(--ink);
+}
+
+.random-post-btn {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.42rem 0.8rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.random-post-btn:hover {
+  border-color: var(--accent);
 }
 
 .legacy-toggle {
@@ -247,12 +398,63 @@ body {
   gap: 1rem;
 }
 
+.no-results {
+  margin: 1rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--card) 78%, transparent);
+}
+
+.now-card {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 14%, var(--card)),
+    color-mix(in srgb, var(--accent-2) 12%, var(--card))
+  );
+  border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--line));
+  border-radius: var(--radius);
+  padding: 1.05rem 1.2rem;
+  margin: 0 0 1rem;
+  box-shadow: var(--shadow);
+}
+
+.now-card h3 {
+  margin: 0.3rem 0 0.55rem;
+}
+
+.now-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.post-grid .post-card {
+  opacity: 0;
+}
+
+body.is-loaded .post-grid .post-card {
+  animation: cardReveal 480ms ease forwards;
+  animation-delay: calc(var(--stagger-index, 0) * 65ms);
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .post-card {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 1.2rem;
   box-shadow: var(--shadow);
+  position: relative;
   transition:
     transform 200ms ease,
     box-shadow 200ms ease,
@@ -289,9 +491,120 @@ body {
   text-decoration: underline;
 }
 
+.card-copy-icon-btn {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.card-copy-icon-btn::after {
+  content: "Copy";
+  position: absolute;
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(4px);
+  opacity: 0;
+  pointer-events: none;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 0.15rem 0.42rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.66rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.card-copy-icon-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.card-copy-icon-btn:hover,
+.card-copy-icon-btn:focus-visible {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.card-copy-icon-btn:hover::after,
+.card-copy-icon-btn:focus-visible::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.card-copy-icon-btn.is-copied {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+.copy-toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 999;
+  border: 1px solid #2f8f46;
+  background: #1f5a2c;
+  color: #e6ffe9;
+  border-radius: 10px;
+  padding: 0.55rem 0.75rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity 170ms ease,
+    transform 170ms ease;
+}
+
+.copy-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.copy-toast.is-error {
+  border-color: #c04848;
+}
+
 .post-card p {
   margin: 0;
   color: var(--muted);
+}
+
+.chip-row {
+  margin: 0 0 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.chip {
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  background: color-mix(in srgb, var(--accent) 10%, var(--card));
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.12rem 0.5rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.67rem;
+  line-height: 1.4;
+  text-transform: lowercase;
 }
 
 .tag {
@@ -317,6 +630,16 @@ body {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--ink);
+  text-decoration: underline;
 }
 
 .article-layout {
@@ -413,6 +736,22 @@ body {
   max-width: 72ch;
 }
 
+.copy-link-btn {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.38rem 0.7rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem;
+  cursor: pointer;
+  margin-bottom: 0.7rem;
+}
+
+.copy-link-btn:hover {
+  border-color: var(--accent);
+}
+
 img,
 video {
   max-width: 100%;
@@ -496,6 +835,19 @@ video {
     row-gap: 0.5rem;
   }
 
+  .post-search {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .changelog-card {
+    padding: 1rem;
+  }
+
+  .random-post-btn {
+    min-height: 36px;
+  }
+
   .legacy-toggle {
     min-height: 36px;
   }
@@ -510,12 +862,21 @@ video {
     padding: 3.4rem 0 2.8rem;
   }
 
+  #latest.section {
+    padding-top: 2.6rem;
+  }
+
   .hero h1 {
     max-width: none;
   }
 
   .hero-copy {
     margin: 1rem 0 1.3rem;
+  }
+
+  .hero-contact {
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
   }
 
   .cta {
