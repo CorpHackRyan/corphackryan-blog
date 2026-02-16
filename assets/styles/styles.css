@@ -334,6 +334,38 @@ main {
   gap: 0.45rem;
 }
 
+.clear-filters-btn {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.42rem 0.78rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+
+.clear-filters-btn:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.clear-tags-btn {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.42rem 0.78rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+
+.clear-tags-btn:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
 .tag-filter-btn {
   border: 1px solid var(--line);
   background: var(--card);
@@ -846,6 +878,14 @@ video {
 
   .changelog-card {
     padding: 1rem;
+  }
+
+  .clear-filters-btn {
+    min-height: 36px;
+  }
+
+  .clear-tags-btn {
+    min-height: 36px;
   }
 
   .random-post-btn {

@@ -9,8 +9,10 @@ const randomPostBtn = document.querySelector("#random-post");
 const postSearchEl = document.querySelector("#post-search");
 const tagFiltersEl = document.querySelector("#tag-filters");
 const noResultsEl = document.querySelector("#no-results");
+const clearFiltersBtn = document.querySelector("#clear-filters");
+const clearTagsBtn = document.querySelector("#clear-tags");
 
-let selectedTag = "all";
+const selectedTags = new Set();
 let showLegacyEntries = true;
 let copyToastTimer;
 
@@ -111,7 +113,7 @@ function applyPostFilters() {
     const isLegacy = card.classList.contains("legacy-card");
 
     const legacyPass = showLegacyEntries || !isLegacy;
-    const tagPass = selectedTag === "all" || tags.includes(selectedTag);
+    const tagPass = selectedTags.size === 0 || tags.some((tag) => selectedTags.has(tag));
     const searchPass = !query || title.includes(query) || bodyText.includes(query) || tags.some((tag) => tag.includes(query));
     const shouldShow = legacyPass && tagPass && searchPass;
 
@@ -131,18 +133,25 @@ function renderTagFilters() {
     getCardTags(card).forEach((tag) => tagSet.add(tag));
   });
 
-  const tags = ["all", ...Array.from(tagSet).sort()];
+  const tags = Array.from(tagSet).sort();
   tagFiltersEl.innerHTML = tags
     .map((tag) => {
-      const label = tag === "all" ? "all tags" : tag;
-      const activeClass = tag === selectedTag ? " is-active" : "";
-      return `<button type="button" class="tag-filter-btn${activeClass}" data-tag="${tag}">${label}</button>`;
+      const activeClass = selectedTags.has(tag) ? " is-active" : "";
+      return `<button type="button" class="tag-filter-btn${activeClass}" data-tag="${tag}">${tag}</button>`;
     })
     .join("");
 
   tagFiltersEl.querySelectorAll(".tag-filter-btn").forEach((button) => {
     button.addEventListener("click", () => {
-      selectedTag = button.dataset.tag || "all";
+      const tag = button.dataset.tag || "";
+      if (!tag) {
+        return;
+      }
+      if (selectedTags.has(tag)) {
+        selectedTags.delete(tag);
+      } else {
+        selectedTags.add(tag);
+      }
       renderTagFilters();
       applyPostFilters();
     });
@@ -332,6 +341,26 @@ if (legacyToggleEl) {
 
 if (postSearchEl) {
   postSearchEl.addEventListener("input", () => {
+    applyPostFilters();
+  });
+}
+
+if (clearFiltersBtn) {
+  clearFiltersBtn.addEventListener("click", () => {
+    selectedTags.clear();
+    if (postSearchEl) {
+      postSearchEl.value = "";
+      postSearchEl.focus();
+    }
+    renderTagFilters();
+    applyPostFilters();
+  });
+}
+
+if (clearTagsBtn) {
+  clearTagsBtn.addEventListener("click", () => {
+    selectedTags.clear();
+    renderTagFilters();
     applyPostFilters();
   });
 }
