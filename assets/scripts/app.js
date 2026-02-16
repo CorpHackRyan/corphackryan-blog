@@ -4,6 +4,50 @@ const legacyCards = document.querySelectorAll(".legacy-card");
 const legacyToggleEl = document.querySelector("#toggle-legacy");
 const yearEl = document.querySelector("#year");
 const themeToggleEl = document.querySelector("#theme-toggle");
+const lastUpdatedEl = document.querySelector("#last-updated");
+
+function getOrdinalSuffix(day) {
+  if (day >= 11 && day <= 13) {
+    return "th";
+  }
+  const remainder = day % 10;
+  if (remainder === 1) {
+    return "st";
+  }
+  if (remainder === 2) {
+    return "nd";
+  }
+  if (remainder === 3) {
+    return "rd";
+  }
+  return "th";
+}
+
+function formatEasternTimestamp(date) {
+  const dateParts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).formatToParts(date);
+  const time = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  })
+    .format(date)
+    .replace(" ", "");
+
+  const weekday = dateParts.find((part) => part.type === "weekday")?.value;
+  const month = dateParts.find((part) => part.type === "month")?.value;
+  const day = Number(dateParts.find((part) => part.type === "day")?.value);
+  const year = dateParts.find((part) => part.type === "year")?.value;
+  const dayWithSuffix = `${day}${getOrdinalSuffix(day)}`;
+
+  return `${weekday}, ${month} ${dayWithSuffix} ${year} (Eastern) ${time}`;
+}
 
 function getPreferredTheme() {
   const savedTheme = localStorage.getItem("theme");
@@ -11,9 +55,7 @@ function getPreferredTheme() {
     return savedTheme;
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  return "dark";
 }
 
 function setTheme(theme) {
@@ -49,7 +91,9 @@ function setLegacyVisibility(showLegacy) {
 
 if (legacyToggleEl) {
   const savedLegacyPreference = localStorage.getItem("showLegacyEntries");
-  const shouldShowLegacy = savedLegacyPreference === "true";
+  const shouldShowLegacy = savedLegacyPreference === null
+    ? true
+    : savedLegacyPreference === "true";
 
   legacyToggleEl.checked = shouldShowLegacy;
   setLegacyVisibility(shouldShowLegacy);
@@ -66,8 +110,13 @@ if (yearEl) {
   yearEl.textContent = String(new Date().getFullYear());
 }
 
+if (lastUpdatedEl) {
+  lastUpdatedEl.textContent = `Last updated: ${formatEasternTimestamp(new Date())}`;
+}
+
+setTheme(getPreferredTheme());
+
 if (themeToggleEl) {
-  setTheme(getPreferredTheme());
   themeToggleEl.addEventListener("click", () => {
     const currentTheme = document.documentElement.getAttribute("data-theme");
     const nextTheme = currentTheme === "dark" ? "light" : "dark";
