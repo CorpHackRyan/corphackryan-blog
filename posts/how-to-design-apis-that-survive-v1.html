@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A practical approach to API contracts, compatibility, and change management for v1 systems."
+    />
+    <meta name="author" content="CorpHackRyan" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="CorpHackRyan" />
+    <meta
+      property="og:title"
+      content="How to design APIs that survive version 1 | CorpHackRyan"
+    />
+    <meta
+      property="og:description"
+      content="Design APIs that stay usable as your product and team evolve."
+    />
+    <meta property="og:image" content="../assets/images/og-default.svg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="How to design APIs that survive version 1 | CorpHackRyan"
+    />
+    <meta
+      property="twitter:description"
+      content="Design APIs that stay usable as your product and team evolve."
+    />
+    <meta property="twitter:image" content="../assets/images/og-default.svg" />
+    <title>How to design APIs that survive version 1 | CorpHackRyan</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html" aria-label="CorpHackRyan home"
+          >CorpHackRyan</a
+        >
+      </div>
+    </header>
+
+    <main class="article-layout">
+      <div class="container">
+        <a class="back-link" href="../index.html">← Back to home</a>
+
+        <article class="article">
+          <header class="article-header">
+            <p class="tag">Engineering</p>
+            <h1>How to design APIs that survive version 1</h1>
+            <div class="article-meta">
+              <span>February 16, 2026</span>
+              <span>•</span>
+              <span>CorpHackRyan Team</span>
+              <span>•</span>
+              <span>6 min read</span>
+            </div>
+          </header>
+
+          <section class="article-content">
+            <p>
+              Most API pain is created early: naming that is too narrow,
+              response shapes that leak internals, and no policy for evolution.
+              A stable v1 API starts with contracts that match user intent, not
+              your first database schema.
+            </p>
+
+            <h2>1. Design around actions, not tables</h2>
+            <p>
+              Good endpoints map to workflows clients care about. If consumers
+              can complete tasks without guessing server behavior, your API will
+              survive refactors behind the scenes.
+            </p>
+
+            <h2>2. Make compatibility non-negotiable</h2>
+            <p>
+              Treat additive changes as the default. Avoid removing fields,
+              changing data types, or repurposing existing semantics unless you
+              provide versioning and migration windows.
+            </p>
+
+            <h2>3. Publish constraints clearly</h2>
+            <p>
+              Document limits, pagination rules, and error codes directly with
+              examples. Clients can build robust integrations only when edge
+              cases are predictable.
+            </p>
+
+            <pre><code>GET /v1/projects?cursor=abc123&limit=20
+{
+  "data": [ ... ],
+  "next_cursor": "def456"
+}</code></pre>
+
+            <p>
+              Keep the core contract boring and explicit. That discipline gives
+              you room to move fast internally while keeping external clients
+              confident.
+            </p>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><strong>CorpHackRyan</strong> • Tech Blog</p>
+        <p class="meta">© <span id="year"></span> All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/scripts/app.js"></script>
+  </body>
+</html>

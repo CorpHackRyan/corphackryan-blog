@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Legacy post: Debugging Git Push Failures and GitHub File Limits" />
+    <meta name="author" content="CorpHackRyan" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="CorpHackRyan" />
+    <meta property="og:title" content="Debugging Git Push Failures and GitHub File Limits | CorpHackRyan" />
+    <meta property="og:description" content="Legacy archive entry from February 9, 2022." />
+    <meta property="og:image" content="../../assets/images/og-default.svg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Debugging Git Push Failures and GitHub File Limits | CorpHackRyan" />
+    <meta property="twitter:description" content="Legacy archive entry from February 9, 2022." />
+    <meta property="twitter:image" content="../../assets/images/og-default.svg" />
+    <title>Debugging Git Push Failures and GitHub File Limits | CorpHackRyan</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/styles/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../../index.html" aria-label="CorpHackRyan home">CorpHackRyan</a>
+      </div>
+    </header>
+
+    <main class="article-layout single-legacy">
+      <div class="container">
+        <a class="back-link" href="../../index.html#latest">← Back to latest articles</a>
+
+        <article class="article legacy-log">
+          <section class="article-content">
+<div class="blog-entry" id="legacy-entry-6">
+    <h3>Wednesday - February 09, 2022 - 19:14:02 (E.S.T.) - Sixth Blog Entry</h3>
+<h2>Debugging Git Push Failures and GitHub File Limits</h2>
+<p>So in sticking with my goal of pushing daily to GitHub, I decided to push my locally hosted website as a start. I skipped using the
+GitHub command line tool for the sake of time. I'm used to enabling the version control (VCS) within my IDE and then committing/pushing from
+there. Never had an issue with it in the past. But for some reason, this time I did. The error that I got when attempting to push was: <br><br>
+    error: RPC failed; curl 55 Failed sending data to the peer<br>
+    send-pack: unexpected disconnect while reading sideband packet<br><br>
+    So upon further inspection, I copied this error, did a quick google and the first suggestion was to switch the git config to http version 1.1,
+    push, then revert to version 2. So, the command was: <br><br>
+    git config --global http.version HTTP/1.1 <br>
+    (push initial commit)<br>
+    git config --global http.version HTTP/2 <br><br>
+    But that didn't work. I still got the same error. So onto the next search. Another solution was to increase the buffer size due to the nature
+    of the error, which I'm not really sure about at this point still. Maybe it's timing out, and we need to increase the timeout? But that's not what
+    this command is doing. We're increasing the buffer size, so apparently something to do with size. At this point I'm thinking the packets might be to
+    big that Webstorm is trying to send with git, so maybe that's why we are increasing the buffer. I don't know. Anyway, we execute the following command: <br><br>
+    git config http.postBuffer 524288000<br><br>
+    And what do we get? Well, we get a little further. Also, it took roughly around 60-70 seconds for this to finish, which seemed like an awful
+    long time to commit just a bunch of text files. I am on a 1GBit connection, and I consistently get 40-45kb/s upstream. Anywhow,
+    the error that I get is that the file 'ryans_drumming.mp4' is too large. Message I got from git cli was: <br><br>
+    remote: error: File fatloss/ryan_drums.mp4 is 506.09 MB; this exceeds GitHub's file size limit of 100.00 MB<br><br>
+    Ha! I forgot I stuck a video of myself drumming in there to share with a friend. The file size was >500MB. No wonder I was getting wacky errors.
+    I also learned that GitHub only supports files up to 100MB so that's interesting. Good thing to know. Anyway, after some serious issues
+    trying to remove the file from the directory via the command line (I ended up specifying the new location as ~/home/krete77 instead of
+    just using /home without the ~, it took me about 6-7 tries to figure that out. Now that I've removed the file, I'm still sitting here waiting
+    for my push to go through. It seems to take a long time no matter what. Now, we get yet another error: <br><br>
+    'Push rejected Push master to origin/master was rejected by the remote'<br>
+    'refs/heads/master:refs/heads/master	[remote rejected] (pre-receive hook declined)'<br><br>
+    So, after more reading, I find an issue that says that I'm trying to do a non-fast-forward push and the hooks are
+    blocking it. Code suggestion to run was 'git pull --rebase' to rebase my local changes on the newest codebase.
+    So, we try this and again, it failed. I've been working through this now for over 2 hours and have NEVER had this kind
+    of issue when trying to push to GitHUb, so I'm going to retire and leave it for tomorrow.
+</p>
+</div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><strong>CorpHackRyan</strong> • Tech Blog</p>
+        <p class="meta">© <span id="year"></span> All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>

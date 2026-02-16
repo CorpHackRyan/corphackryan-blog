@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Legacy post: How I Added Open Graph Link Previews" />
+    <meta name="author" content="CorpHackRyan" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="CorpHackRyan" />
+    <meta property="og:title" content="How I Added Open Graph Link Previews | CorpHackRyan" />
+    <meta property="og:description" content="Legacy archive entry from February 24, 2022." />
+    <meta property="og:image" content="../../assets/images/og-default.svg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="How I Added Open Graph Link Previews | CorpHackRyan" />
+    <meta property="twitter:description" content="Legacy archive entry from February 24, 2022." />
+    <meta property="twitter:image" content="../../assets/images/og-default.svg" />
+    <title>How I Added Open Graph Link Previews | CorpHackRyan</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/styles/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../../index.html" aria-label="CorpHackRyan home">CorpHackRyan</a>
+      </div>
+    </header>
+
+    <main class="article-layout single-legacy">
+      <div class="container">
+        <a class="back-link" href="../../index.html#latest">← Back to latest articles</a>
+
+        <article class="article legacy-log">
+          <section class="article-content">
+<div class="blog-entry" id="legacy-entry-8">
+    <h3>Thursday - February 24, 2022 - 08:46:02 (E.S.T.) - 8th Blog Entry</h3>
+    <h2>How I Added Open Graph Link Previews</h2>
+    <p>A quick note on web development. Learned how to get that cool link preview when you send a link to a friend or post a link to facebook. There's a thing called
+        Open Graph meta tags, which you use to specify the requirements for your tag. For instance, your title, description and image are the typical use scenario. They
+        look like this:<br><br>
+        &lt;meta property="og:title" content="Ryan O'Connors Technical Blog" />
+        <br>
+        &lt;meta property="og:description" content="Read about my technical journey as I tackle technical subjects." />
+        <br>
+        &lt;meta property="og:image" content="http://(website_here)" />
+        <br><br>
+        You plug these right into the &lt;head/> section of your website, and it will populate whenever you send or post a link to your buddy. Pretty cool! You can read more
+        about Open Graph Meta Tags <a href="https://ahrefs.com/blog/open-graph-meta-tags/">here</a>. Upon testing out my open graph link on Facebook, I found
+        <a href="https://developers.facebook.com/tools/debug/">this</a> cool site for developers. It will scrape your website, and also give you a preview of your open graph
+        to verify it works.</p></div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><strong>CorpHackRyan</strong> • Tech Blog</p>
+        <p class="meta">© <span id="year"></span> All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>

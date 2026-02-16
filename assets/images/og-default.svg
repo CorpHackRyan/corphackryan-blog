@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="CorpHackRyan social preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f1424" />
+      <stop offset="100%" stop-color="#153f5d" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0052ff" />
+      <stop offset="100%" stop-color="#00a6a6" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="1020" cy="120" r="220" fill="#2b89ff" opacity="0.18" />
+  <circle cx="180" cy="560" r="240" fill="#27e2d6" opacity="0.14" />
+  <text x="90" y="260" fill="#f4f7fb" font-size="96" font-family="Space Grotesk, Segoe UI, sans-serif" font-weight="700">CorpHackRyan</text>
+  <text x="90" y="340" fill="#c8d7f0" font-size="40" font-family="IBM Plex Mono, monospace">Practical insights for builders</text>
+  <rect x="90" y="390" width="330" height="10" fill="url(#accent)" rx="5" />
+</svg>

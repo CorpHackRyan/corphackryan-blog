@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CorpHackRyan is a modern tech blog about software engineering, AI, web development, and building products."
+    />
+    <meta name="author" content="CorpHackRyan" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="CorpHackRyan" />
+    <meta property="og:title" content="CorpHackRyan | Tech Blog" />
+    <meta
+      property="og:description"
+      content="Practical insights for builders in code, AI, and product."
+    />
+    <meta property="og:image" content="assets/images/og-default.svg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="CorpHackRyan | Tech Blog" />
+    <meta
+      property="twitter:description"
+      content="Practical insights for builders in code, AI, and product."
+    />
+    <meta property="twitter:image" content="assets/images/og-default.svg" />
+    <title>CorpHackRyan | Tech Blog</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="#" aria-label="CorpHackRyan home">CorpHackRyan</a>
+        <div class="header-actions">
+          <nav class="main-nav" aria-label="Primary navigation">
+            <a href="#latest">Latest</a>
+            <a href="#topics">Topics</a>
+            <a href="#newsletter">Newsletter</a>
+            <a href="#about">About</a>
+          </nav>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Enable dark mode"
+          >
+            Dark mode
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <p class="eyebrow">Ship smarter, not louder</p>
+          <h1>Practical insights for builders in code, AI, and product.</h1>
+          <p class="hero-copy">
+            CorpHackRyan is a focused tech blog sharing engineering playbooks,
+            architecture notes, and field-tested lessons from real projects.
+          </p>
+          <a class="cta" href="#latest">Read latest posts</a>
+        </div>
+      </section>
+
+      <section id="latest" class="section">
+        <div class="container">
+          <div class="section-title-row">
+            <h2>Latest Articles</h2>
+            <div class="list-controls">
+              <label class="legacy-toggle" for="toggle-legacy">
+                <input type="checkbox" id="toggle-legacy" />
+                Show legacy entries
+              </label>
+              <span id="post-count" class="meta"></span>
+            </div>
+          </div>
+
+          <div class="post-grid">
+            <article class="post-card">
+              <p class="tag">Engineering</p>
+              <p class="post-date">February 16, 2026</p>
+              <h3>
+                <a href="posts/how-to-design-apis-that-survive-v1.html"
+                  >How to design APIs that survive version 1</a
+                >
+              </h3>
+              <p>
+                A practical approach to API contracts, change management, and
+                backward compatibility in fast-moving teams.
+              </p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">June 3, 2022</p>
+              <h3>
+                <a href="posts/legacy/react-linux-career-momentum.html"
+                  >React Tutorials, Linux Setup Hurdles, and Career Momentum</a
+                >
+              </h3>
+              <p>
+                Imported from your older site content (11th blog entry).
+              </p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">April 8, 2022</p>
+              <h3>
+                <a href="posts/legacy/sql-python-regex-extraction.html"
+                  >SQL Workbench, Python File Scans, and Regex Extraction</a
+                >
+              </h3>
+              <p>Imported from your older site content (10th blog entry).</p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">March 14, 2022</p>
+              <h3>
+                <a href="posts/legacy/resumes-interviews-yaml-lessons.html"
+                  >Resumes, Interviews, and CSV/XLSX-to-YAML Lessons</a
+                >
+              </h3>
+              <p>Imported from your older site content.</p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">February 24, 2022</p>
+              <h3>
+                <a href="posts/legacy/open-graph-link-previews.html"
+                  >How I Added Open Graph Link Previews</a
+                >
+              </h3>
+              <p>Imported from your older site content.</p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">February 23, 2022</p>
+              <h3>
+                <a href="posts/legacy/cloud-labs-php-db-windows-xp.html"
+                  >Cloud Labs, PHP DB Friction, and a Windows XP Throwback</a
+                >
+              </h3>
+              <p>Imported from your older site content.</p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">February 9, 2022</p>
+              <h3>
+                <a href="posts/legacy/git-push-failures-file-limits.html"
+                  >Debugging Git Push Failures and GitHub File Limits</a
+                >
+              </h3>
+              <p>Imported from your older site content.</p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">February 8, 2022</p>
+              <h3>
+                <a href="posts/legacy/mariadb-aws-project-pressure.html"
+                  >MariaDB Fundamentals, AWS Study, and Project Pressure</a
+                >
+              </h3>
+              <p>Imported from your older site content.</p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">January 2, 2022</p>
+              <h3>
+                <a href="posts/legacy/apache-git-cli-html5-lessons.html"
+                  >Apache Setup Notes, Git CLI Practice, and HTML5 Lessons</a
+                >
+              </h3>
+              <p>Imported from your older site content.</p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">January 2, 2022</p>
+              <h3>
+                <a href="posts/legacy/covid-recovery-dev-momentum.html"
+                  >Recovering from COVID and Rebuilding My Dev Momentum</a
+                >
+              </h3>
+              <p>Imported from your older site content.</p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">December 28, 2021</p>
+              <h3>
+                <a href="posts/legacy/css-layout-mobile-questions.html"
+                  >CSS Hover Effects, Layout Tweaks, and Mobile Questions</a
+                >
+              </h3>
+              <p>Imported from your older site content.</p>
+            </article>
+
+            <article class="post-card legacy-card">
+              <p class="tag">Legacy Archive</p>
+              <p class="post-date">December 28, 2021</p>
+              <h3>
+                <a href="posts/legacy/launching-first-tech-blog.html"
+                  >Launching My First Tech Blog and Learning HTML by Doing</a
+                >
+              </h3>
+              <p>
+                Imported from your older site content.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="about" class="site-footer">
+      <div class="container footer-inner">
+        <p><strong>CorpHackRyan</strong> • Tech Blog</p>
+        <p class="meta">© <span id="year"></span> All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="assets/scripts/app.js"></script>
+  </body>
+</html>

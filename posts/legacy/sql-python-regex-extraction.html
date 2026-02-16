@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Legacy post: SQL Workbench, Python File Scans, and Regex Extraction" />
+    <meta name="author" content="CorpHackRyan" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="CorpHackRyan" />
+    <meta property="og:title" content="SQL Workbench, Python File Scans, and Regex Extraction | CorpHackRyan" />
+    <meta property="og:description" content="Legacy archive entry from April 8, 2022." />
+    <meta property="og:image" content="../../assets/images/og-default.svg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="SQL Workbench, Python File Scans, and Regex Extraction | CorpHackRyan" />
+    <meta property="twitter:description" content="Legacy archive entry from April 8, 2022." />
+    <meta property="twitter:image" content="../../assets/images/og-default.svg" />
+    <title>SQL Workbench, Python File Scans, and Regex Extraction | CorpHackRyan</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/styles/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../../index.html" aria-label="CorpHackRyan home">CorpHackRyan</a>
+      </div>
+    </header>
+
+    <main class="article-layout single-legacy">
+      <div class="container">
+        <a class="back-link" href="../../index.html#latest">← Back to latest articles</a>
+
+        <article class="article legacy-log">
+          <section class="article-content">
+<div class="blog-entry" id="legacy-entry-10">
+    <h3>Friday April 8th, 2022 - 08:22:18 (E.S.T.) - 10th Blog Entry</h3>
+    <h2>SQL Workbench, Python File Scans, and Regex Extraction</h2>
+    <p>I am becoming  very comfortable with moving between programming languages now. I was programming a lot of HTML/CSS for a while, then moved back into Python. I'm becoming
+    somewhat competent now in setting up the different environments for each language. It's pretty exciting actually. I was doing a lot of SQL work last week.  I actually had
+    mySQL workbench installed a couple months ago as recommended by a mentor, but hadn't actually used it extensively until recently. After having gone through a week long mySQL fundamentals class now,
+    I'm happy to report how awesome this app actually is. I love how it lets me execute SQL queries and displays graphically what I'm executing. Normally, I'd have to either print
+    out the results or manually run SELECT statements within the mariaDB shell. <br><br>
+    Anyhow, I just finished up a Python side project for a company. I can't really talk about what it's about
+    in details, but  I can talk about some of the different methods I've been using. First one is OS.walk(). This function let's you traverse through unlimited (well, I believe it's unlimited)
+    amounts of directories, within sub directories until it gets to the  lowest directory. Once I get to the lowest  directory, I'm seeking out any file that's a Ruby (*.rb) file. Once found,
+    I'm adding to a list to return to my main function. I then pass that list off to another function which will process all of the Ruby files it found in the system. Here, I bring in
+    the regular expression library, and seek through each file scraping for any data that's contained between quotation marks or apostrophes (' or  ""). I just run a for loop to iterate through
+    the file list, then another for loop to read each file, then read in each line and apply: re.findall(r"['\"](.*?)['\"]", index). I just run a if statement on whether what's returned is
+    'None' or a  match is found. If match is found, then we add append this data to a newly created list which contains all matches found.<br><br>
+    Once I have a traversed through all folders and files,  and scraped each file line by line for specific data, I then do a set() difference between two lists. The first list I'm using
+    is the one I built from all the Ruby files, and the other list I'm using is a list built from a CSV file which contains particular data of interest. Long story short, I do a set difference
+    between the two, and whatever is missing from the Ruby files that doesn't exist in the list built from the CSV file, I then return back that final set of data. This is the data that will
+    be used for reporting which security measures are missing from the system. This was a really fun project! It was estimated to take around 8 hours total and I ended up taking around 16.75 hours
+    to complete it. <br><br>
+    I have two other projects that I'm working on right now as well. One isn't that interesting so I won't bother going into it. But the other is a take home technical assessment which I'm having
+    to build in Java. The scope is to use the <a href="https://openaq.org/#/">OpenAQ</a> API to send requests and retrieve the results. Once the results have been retrieved, store them in some
+    sort of data structure that can be used to pass off to a front-end developer who will then be able to write to code to process that data to generate a heat map. I've actually got the API
+    requests working, and receiving the data back and storing them in <a href="https://www.infoworld.com/article/3222851/what-is-json-a-better-format-for-data-exchange.html">JSON</a> format. Let me tell you,
+    parsing JSON data in Java is a huge technical pain compared to Python. It's night and day. I'd say what takes 4-6 lines in Java to parse JSON can be done done in 1-2 lines in Python. And it's much cleaner
+    looking in Python in my opinion. Maybe I'm just Python biased, but I really think for this type of solution, Python is the clear winner.
+    </p>
+    </div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><strong>CorpHackRyan</strong> • Tech Blog</p>
+        <p class="meta">© <span id="year"></span> All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>
