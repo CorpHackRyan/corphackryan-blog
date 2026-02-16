@@ -1,6 +1,6 @@
-# CorpHackRyan Tech Blog
+# CorpHackRyan Blog
 
-Personal tech blog for documenting random computer projects, experiments, and notes.
+Personal blog for documenting projects, experiments, notes, and whatever else I am exploring.
 
 ## Stack
 

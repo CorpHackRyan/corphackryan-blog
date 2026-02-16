@@ -3,7 +3,6 @@ const cards = document.querySelectorAll(".post-card");
 const legacyCards = document.querySelectorAll(".legacy-card");
 const legacyToggleEl = document.querySelector("#toggle-legacy");
 const yearEl = document.querySelector("#year");
-const themeToggleEl = document.querySelector("#theme-toggle");
 const lastUpdatedEl = document.querySelector("#last-updated");
 const randomPostBtn = document.querySelector("#random-post");
 const postSearchEl = document.querySelector("#post-search");
@@ -11,6 +10,12 @@ const tagFiltersEl = document.querySelector("#tag-filters");
 const noResultsEl = document.querySelector("#no-results");
 const clearFiltersBtn = document.querySelector("#clear-filters");
 const clearTagsBtn = document.querySelector("#clear-tags");
+const distanceFormEl = document.querySelector("#distance-form");
+const originAddressEl = document.querySelector("#origin-address");
+const travelModeEl = document.querySelector("#travel-mode");
+const directionsStatusEl = document.querySelector("#directions-status");
+const localMapFrameEl = document.querySelector("#local-map-frame");
+let themeToggleEl = null;
 
 const selectedTags = new Set();
 let showLegacyEntries = true;
@@ -66,6 +71,56 @@ function getPreferredTheme() {
   }
 
   return "dark";
+}
+
+function getPathPrefix() {
+  const path = window.location.pathname;
+  if (path.includes("/posts/legacy/")) {
+    return "../../";
+  }
+  if (path.includes("/posts/")) {
+    return "../";
+  }
+  return "";
+}
+
+function renderGlobalHeader() {
+  const headerEl = document.querySelector(".site-header");
+  if (!headerEl) {
+    return;
+  }
+
+  const prefix = getPathPrefix();
+  const isHomePage = prefix === "";
+  const homeHref = isHomePage ? "#" : `${prefix}index.html`;
+  const latestHref = isHomePage ? "#latest" : `${prefix}index.html#latest`;
+  const localHref = isHomePage ? "#local-area" : `${prefix}index.html#local-area`;
+  const aboutHref = isHomePage ? "#about" : `${prefix}index.html#about`;
+
+  headerEl.innerHTML = `
+    <div class="container nav-wrap">
+      <a class="brand" href="${homeHref}" aria-label="CorpHackRyan home">CorpHackRyan</a>
+      <div class="header-actions">
+        <nav class="main-nav" aria-label="Primary navigation">
+          <a href="${latestHref}">Latest</a>
+          <a href="${prefix}posts/exercise-log.html">Exercise</a>
+          <a href="${prefix}posts/food-guide.html">Food</a>
+          <a href="${localHref}">Local</a>
+          <a href="${aboutHref}">About</a>
+        </nav>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-label="Enable dark mode"
+        >
+          Dark mode
+        </button>
+      </div>
+    </div>
+  `;
+
+  themeToggleEl = document.querySelector("#theme-toggle");
 }
 
 function setTheme(theme) {
@@ -324,6 +379,79 @@ function setupCopyLinkButton() {
   articleContainer.prepend(copyBtn);
 }
 
+function setupDirectionsTool() {
+  if (!distanceFormEl || !originAddressEl || !travelModeEl || !localMapFrameEl) {
+    return;
+  }
+
+  distanceFormEl.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const origin = originAddressEl.value.trim();
+    if (!origin) {
+      if (directionsStatusEl) {
+        directionsStatusEl.textContent = "Please enter your address first.";
+      }
+      originAddressEl.focus();
+      return;
+    }
+
+    const destination = "Brockton, MA";
+    const selectedMode = travelModeEl.value || "d";
+    const directionsEmbedUrl = `https://maps.google.com/maps?f=d&saddr=${encodeURIComponent(origin)}&daddr=${encodeURIComponent(destination)}&dirflg=${encodeURIComponent(selectedMode)}&output=embed`;
+
+    if (directionsStatusEl) {
+      directionsStatusEl.textContent = "Directions loaded in the map below.";
+    }
+
+    localMapFrameEl.src = directionsEmbedUrl;
+    localMapFrameEl.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+}
+
+function renderFoodRatings() {
+  const ratingBlocks = document.querySelectorAll(".food-rating[data-rating]");
+  if (ratingBlocks.length === 0) {
+    return;
+  }
+
+  ratingBlocks.forEach((block) => {
+    const rawRating = Number.parseFloat(block.dataset.rating || "");
+    const rating = Number.isFinite(rawRating)
+      ? Math.max(0, Math.min(10, rawRating))
+      : 0;
+    const ratingScoreEl = block.querySelector(".food-rating-score");
+    const starsEl = block.querySelector(".food-rating-stars");
+    const label = block.dataset.ratingLabel || "Rating";
+
+    if (ratingScoreEl) {
+      ratingScoreEl.textContent = `${rating.toFixed(1)}/10`;
+    }
+
+    if (starsEl) {
+      const fullStars = Math.floor(rating);
+      const hasHalfStar = rating - fullStars >= 0.5;
+      starsEl.innerHTML = "";
+
+      for (let index = 0; index < 10; index += 1) {
+        const starEl = document.createElement("span");
+        starEl.className = "food-star";
+        starEl.textContent = "★";
+
+        if (index < fullStars) {
+          starEl.classList.add("filled");
+        } else if (index === fullStars && hasHalfStar) {
+          starEl.classList.add("half");
+        }
+
+        starsEl.appendChild(starEl);
+      }
+    }
+
+    block.setAttribute("aria-label", `${label}: ${rating.toFixed(1)} out of 10`);
+  });
+}
+
 if (legacyToggleEl) {
   const savedLegacyPreference = localStorage.getItem("showLegacyEntries");
   const shouldShowLegacy = savedLegacyPreference === null
@@ -373,6 +501,7 @@ if (lastUpdatedEl) {
   lastUpdatedEl.textContent = `Last updated: ${formatEasternTimestamp(new Date())}`;
 }
 
+renderGlobalHeader();
 setTheme(getPreferredTheme());
 setCanonicalLink();
 setupCardTitleCopyButtons();
@@ -381,6 +510,8 @@ applyPostFilters();
 initializeCardRevealAnimation();
 setupCopyLinkButton();
 setupKeyboardShortcuts();
+setupDirectionsTool();
+renderFoodRatings();
 
 if (themeToggleEl) {
   themeToggleEl.addEventListener("click", () => {

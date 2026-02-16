@@ -5,11 +5,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=0,maximum-scale=1">
     <meta charset="UTF-8">
-    <title>Welcome to Ryan's Technical Blog</title>
+    <title>Welcome to Ryan's Blog</title>
     <link rel="stylesheet" type="text/css" href="./css/blog.css">
     <link rel="icon" type="image/x-icon" href="./coding.ico">
-    <meta property="og:title" content="Ryan O'Connors Technical Blog" />
-    <meta property="og:description" content="Read about my technical journey as I tackle technical subjects." />
+    <meta property="og:title" content="Ryan O'Connors Blog" />
+    <meta property="og:description" content="Read about my projects, ideas, and whatever I am exploring." />
     <meta property="og:image" content="http://www.ryaninthecloud.com/cpu.jpg" />
     <script src="./js/main.js"></script>
 </head>
@@ -17,8 +17,8 @@
 
 <body>
 
-<h2>Welcome to Ryan's Tech Blog!<br><br>
-    Here, I document my workings of random tech stuff. Enjoy!<br><br>
+<h2>Welcome to Ryan's Blog!<br><br>
+    Here, I document random projects and thoughts. Enjoy!<br><br>
     If you have anything you wish to say, feel free to <a href="mailto:ryanoconnor.dev@gmail.com">email me.</a> <br>
 </h2>
 
@@ -135,9 +135,9 @@ the whole point actually in making the switch - to force myself to learn how to 
     <p>A quick note on web development. Learned how to get that cool link preview when you send a link to a friend or post a link to facebook. There's a thing called
         Open Graph meta tags, which you use to specify the requirements for your tag. For instance, your title, description and image are the typical use scenario. They
         look like this:<br><br>
-        &lt;meta property="og:title" content="Ryan O'Connors Technical Blog" />
+        &lt;meta property="og:title" content="Ryan O'Connors Blog" />
         <br>
-        &lt;meta property="og:description" content="Read about my technical journey as I tackle technical subjects." />
+        &lt;meta property="og:description" content="Read about my projects, ideas, and whatever I am exploring." />
         <br>
         &lt;meta property="og:image" content="http://(website_here)" />
         <br><br>

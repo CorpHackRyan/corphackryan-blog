@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Food recommendations page for places to eat."
+    />
+    <meta name="author" content="CorpHackRyan" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="CorpHackRyan" />
+    <meta property="og:title" content="Food Recommendations | CorpHackRyan" />
+    <meta
+      property="og:description"
+      content="Favorite spots and recommendations for places to eat."
+    />
+    <meta property="og:image" content="../assets/images/og-default.svg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="Food Recommendations | CorpHackRyan"
+    />
+    <meta
+      property="twitter:description"
+      content="Favorite spots and recommendations for places to eat."
+    />
+    <meta property="twitter:image" content="../assets/images/og-default.svg" />
+    <title>Food Recommendations | CorpHackRyan</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html" aria-label="CorpHackRyan home"
+          >CorpHackRyan</a
+        >
+      </div>
+    </header>
+
+    <main class="article-layout">
+      <div class="container">
+        <a class="back-link" href="../index.html">← Back to home</a>
+
+        <header class="food-page-header">
+          <p class="tag">Food</p>
+          <h1>Food Recommendations</h1>
+          <div class="article-meta">
+            <span>February 16, 2026</span>
+            <span>•</span>
+            <span>Ryan O'Connor</span>
+            <span>•</span>
+            <span>1 min read</span>
+          </div>
+        </header>
+
+        <section class="food-intro-card">
+          <p>
+            This page will hold my food recommendations and favorite places to
+            eat.
+          </p>
+          <p>
+            I will add entries over time with what to order, where it is, and
+            why I recommend it.
+          </p>
+        </section>
+
+        <section class="food-recommendations">
+          <article class="food-rec-card">
+            <h2>Aroma Pizza (Abington)</h2>
+            <div class="food-rating" data-rating="8.5" data-rating-label="Aroma Pizza rating">
+              <span class="food-rating-score"></span>
+              <div class="food-rating-stars" aria-hidden="true"></div>
+            </div>
+            <p>
+              We have been ordering from Aroma Pizza for about 15 years and it
+              has stayed consistently great. The steak dinner and chicken
+              teriyaki dinner are both awesome, and their carrot cake is
+              delicious.
+            </p>
+            <div class="place-links">
+              <a
+                class="place-link-card"
+                href="https://www.aromapizzaabington.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="place-link-label">Website</span>
+                <span class="place-link-value">aromapizzaabington.com</span>
+              </a>
+              <a
+                class="place-link-card"
+                href="https://maps.google.com/?q=143+N+Quincy+St,+Abington,+MA+02351"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="place-link-label">Address</span>
+                <span class="place-link-value">143 N Quincy St, Abington, MA 02351</span>
+              </a>
+              <a class="place-link-card" href="tel:+15085104106">
+                <span class="place-link-label">Phone</span>
+                <span class="place-link-value phone-link-value">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6.62 10.79a15.46 15.46 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.11.37 2.3.56 3.53.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.99a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.22.19 2.41.56 3.53a1 1 0 0 1-.24 1.01l-2.2 2.26z"/>
+                  </svg>
+                  <span>(508) 510-4106</span>
+                </span>
+              </a>
+            </div>
+
+            <div class="food-media-grid">
+              <figure class="food-photo">
+                <img
+                  src="https://static.wixstatic.com/media/11062b_77adf0571055487ebd7a81d46ae4f612~mv2.jpg/v1/fill/w_490,h_327,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_77adf0571055487ebd7a81d46ae4f612~mv2.jpg"
+                  alt="Aroma Pizza photo from their website"
+                  loading="lazy"
+                />
+              </figure>
+              <div class="food-map-wrap">
+                <iframe
+                  title="Map to Aroma Pizza in Abington, Massachusetts"
+                  src="https://maps.google.com/maps?q=143%20N%20Quincy%20St%2C%20Abington%2C%20MA%2002351&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><strong>CorpHackRyan</strong> • Blog</p>
+        <p class="meta">© <span id="year"></span> All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/scripts/app.js"></script>
+  </body>
+</html>

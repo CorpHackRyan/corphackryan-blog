@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="CorpHackRyan is a modern tech blog about software engineering, AI, web development, and building products."
+      content="CorpHackRyan is a personal blog about projects, ideas, learning, and whatever I am exploring."
     />
     <meta name="author" content="CorpHackRyan" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="CorpHackRyan" />
-    <meta property="og:title" content="CorpHackRyan | Tech Blog" />
+    <meta property="og:title" content="CorpHackRyan | Blog" />
     <meta
       property="og:description"
-      content="Practical insights for builders in code, AI, and product."
+      content="Stories, lessons, and notes from what I am building and learning."
     />
     <meta property="og:image" content="assets/images/og-default.svg" />
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="CorpHackRyan | Tech Blog" />
+    <meta property="twitter:title" content="CorpHackRyan | Blog" />
     <meta
       property="twitter:description"
-      content="Practical insights for builders in code, AI, and product."
+      content="Stories, lessons, and notes from what I am building and learning."
     />
     <meta property="twitter:image" content="assets/images/og-default.svg" />
-    <title>CorpHackRyan | Tech Blog</title>
+    <title>CorpHackRyan | Blog</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,8 +40,9 @@
         <div class="header-actions">
           <nav class="main-nav" aria-label="Primary navigation">
             <a href="#latest">Latest</a>
-            <a href="#topics">Topics</a>
-            <a href="#newsletter">Newsletter</a>
+            <a href="posts/exercise-log.html">Exercise</a>
+            <a href="posts/food-guide.html">Food</a>
+            <a href="#local-area">Local</a>
             <a href="#about">About</a>
           </nav>
           <button
@@ -68,10 +69,10 @@
             </a>
           </figure>
           <div class="hero-copy-block">
-            <p class="eyebrow">Random computer notes from my day-to-day</p>
-            <h1>A fun place where I document random computer things I do.</h1>
+            <p class="eyebrow">Random notes from my day-to-day</p>
+            <h1>A fun place where I document random things I do and learn.</h1>
             <p class="hero-copy">
-              CorpHackRyan is my personal tech corner for experiments, lessons
+              CorpHackRyan is my personal corner for experiments, lessons
               learned, project notes, and whatever I am tinkering with lately.
             </p>
             <a class="cta" href="#latest">Read latest posts</a>
@@ -163,11 +164,28 @@
             <h3>This Week I Am Building Out This Blog</h3>
             <p>
               I am cleaning up old entries, tuning design details, and keeping
-              this as a live notebook for whatever computer project I touch.
+              this as a live notebook for whatever I am working on.
             </p>
           </article>
 
           <div class="post-grid">
+            <article class="post-card" data-tags="exercise health fitness cardio log">
+              <p class="tag">Exercise</p>
+              <p class="post-date">February 16, 2026</p>
+              <h3>
+                <a href="posts/exercise-log.html">Exercise Log</a>
+              </h3>
+              <p class="chip-row">
+                <span class="chip">exercise</span>
+                <span class="chip">fitness</span>
+                <span class="chip">log</span>
+              </p>
+              <p>
+                Ongoing training tracker with date, exercise type, distance,
+                time, and notes.
+              </p>
+            </article>
+
             <article class="post-card" data-tags="engineering api architecture web">
               <p class="tag">Engineering</p>
               <p class="post-date">February 16, 2026</p>
@@ -407,11 +425,70 @@
         </div>
       </section>
 
+      <section id="local-area" class="section local-area-section">
+        <div class="container">
+          <div class="local-area-card">
+            <p class="tag">Local Area</p>
+            <h2>Brockton, Massachusetts</h2>
+            <p class="meta">
+              A quick zoomed-out map view of my local area.
+            </p>
+            <div class="map-embed-wrap">
+              <iframe
+                id="local-map-frame"
+                title="Map of Brockton, Massachusetts"
+                src="https://maps.google.com/maps?q=Brockton%2C%20MA&t=&z=10&ie=UTF8&iwloc=&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p class="meta map-link-row">
+              <a
+                href="https://www.google.com/maps/place/Brockton,+MA"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Open in Google Maps</a
+              >
+            </p>
+            <div class="distance-tool">
+              <h3>How far away are you from me?</h3>
+              <p class="meta">
+                Type in your address and get quick directions with drive time.
+              </p>
+              <form id="distance-form" class="distance-form" novalidate>
+                <label for="origin-address" class="distance-label">Your address</label>
+                <div class="distance-controls">
+                  <input
+                    id="origin-address"
+                    name="origin-address"
+                    class="distance-input"
+                    type="text"
+                    placeholder="123 Main St, Boston, MA"
+                    autocomplete="street-address"
+                    aria-describedby="directions-status"
+                  />
+                  <label for="travel-mode" class="distance-label mode-label">Mode</label>
+                  <select id="travel-mode" name="travel-mode" class="distance-select">
+                    <option value="d" selected>Drive</option>
+                    <option value="w">Walk</option>
+                    <option value="r">Transit</option>
+                    <option value="b">Bike</option>
+                  </select>
+                  <button type="submit" class="distance-btn">Get direction time</button>
+                </div>
+              </form>
+              <p id="directions-status" class="meta directions-status" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <footer id="about" class="site-footer">
       <div class="container footer-inner">
-        <p><strong>CorpHackRyan</strong> • Tech Blog</p>
+        <p><strong>CorpHackRyan</strong> • Blog</p>
         <p class="meta">
           <a href="posts/changelog.html">Changelog</a> • ©
           <span id="year"></span> All rights reserved.
