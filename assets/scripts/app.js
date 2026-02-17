@@ -16,6 +16,9 @@ const travelModeEl = document.querySelector("#travel-mode");
 const directionsStatusEl = document.querySelector("#directions-status");
 const localMapFrameEl = document.querySelector("#local-map-frame");
 let themeToggleEl = null;
+let themeModeTextEl = null;
+let mockMenuButtonEl = null;
+let mockMenuPanelEl = null;
 
 const selectedTags = new Set();
 let showLegacyEntries = true;
@@ -99,28 +102,92 @@ function renderGlobalHeader() {
 
   headerEl.innerHTML = `
     <div class="container nav-wrap">
-      <a class="brand" href="${homeHref}" aria-label="CorpHackRyan home">CorpHackRyan</a>
+      <a class="brand" href="${homeHref}" aria-label="CorpHackRyan home">
+        <img
+          class="brand-avatar"
+          src="${prefix}assets/images/corphackryan_cartoon.png"
+          alt="CorpHackRyan cartoon avatar"
+          loading="lazy"
+        />
+        <span>CorpHackRyan</span>
+      </a>
       <div class="header-actions">
         <nav class="main-nav" aria-label="Primary navigation">
-          <a href="${latestHref}">Latest</a>
-          <a href="${prefix}posts/exercise-log.html">Exercise</a>
-          <a href="${prefix}posts/food-guide.html">Food</a>
-          <a href="${localHref}">Local</a>
-          <a href="${aboutHref}">About</a>
+          <a class="nav-item-link" href="${latestHref}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v2H3V5zm0 6h12v2H3v-2zm0 6h18v2H3v-2z"/></svg>
+            <span>Latest</span>
+          </a>
+          <a class="nav-item-link" href="${prefix}posts/exercise-log.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.57 14.86 18 12.29V10a2 2 0 0 0-2-2h-2.29l-2.57-2.57a1.5 1.5 0 0 0-2.12 0L7.29 7H5a2 2 0 0 0-2 2v2.29l-2.57 2.57a1.5 1.5 0 0 0 0 2.12L3 18.71V21a2 2 0 0 0 2 2h2.29l2.57 2.57a1.5 1.5 0 0 0 2.12 0L13.71 23H16a2 2 0 0 0 2-2v-2.29l2.57-2.57a1.5 1.5 0 0 0 0-2.12ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg>
+            <span>Exercise</span>
+          </a>
+          <a class="nav-item-link" href="${prefix}posts/food-guide.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v9a2 2 0 0 1-2 2v9H3v-9a2 2 0 0 1-2-2V2h2v4h2V2h2Zm7 0h2v20h-2v-8h-2V2h2v10h2V2Zm8 0v20h-2v-8h-2V2h2v10h2V2h2Z"/></svg>
+            <span>Food</span>
+          </a>
+          <a class="nav-item-link" href="${prefix}posts/entertainment.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v10h16V7H4Zm4 2 8 3-8 3V9Z"/></svg>
+            <span>Entertainment</span>
+          </a>
+          <a class="nav-item-link" href="${prefix}posts/music.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11.55A4 4 0 1 0 14 18V8h6V3h-8Z"/></svg>
+            <span>Music</span>
+          </a>
+          <a class="nav-item-link" href="${localHref}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9a4.98 4.98 0 0 0-3.2 1.15A4.98 4.98 0 0 0 12 2a5 5 0 0 0-1.8 9.66A4.99 4.99 0 0 0 7 21h4v1a1 1 0 1 0 2 0v-1h4a5 5 0 0 0-3.2-9.34A4.97 4.97 0 0 0 17 9z"/></svg>
+            <span>Gomblin'</span>
+          </a>
+          <a class="nav-item-link" href="${aboutHref}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 15h-2v-6h2Zm-1-8.2a1.2 1.2 0 1 1 1.2-1.2A1.2 1.2 0 0 1 12 8.8Z"/></svg>
+            <span>About</span>
+          </a>
         </nav>
-        <button
-          id="theme-toggle"
-          class="theme-toggle"
-          type="button"
-          aria-label="Enable dark mode"
-        >
-          Dark mode
-        </button>
+        <div class="theme-switch-wrap">
+          <button
+            id="theme-toggle"
+            class="theme-toggle-switch"
+            type="button"
+            role="switch"
+            aria-checked="true"
+            aria-label="Toggle dark mode"
+          >
+            <span class="theme-toggle-track">
+              <span class="theme-toggle-thumb"></span>
+            </span>
+          </button>
+          <span id="theme-mode-text" class="theme-mode-text">DARK</span>
+        </div>
+        <div class="mock-menu">
+          <button
+            id="mock-menu-button"
+            class="mock-menu-button"
+            type="button"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-controls="mock-menu-panel"
+            aria-label="Open account menu"
+          >
+            <span class="mock-menu-avatar">CR</span>
+            <span class="mock-menu-label">Account</span>
+            <span class="mock-menu-caret">▾</span>
+          </button>
+          <div id="mock-menu-panel" class="mock-menu-panel" role="menu" aria-label="Mock account menu">
+            <p class="mock-menu-caption">Mock menu</p>
+            <button type="button" class="mock-menu-item" role="menuitem">Sign in</button>
+            <button type="button" class="mock-menu-item" role="menuitem">Create account</button>
+            <button type="button" class="mock-menu-item" role="menuitem">Profile</button>
+            <button type="button" class="mock-menu-item" role="menuitem">Settings</button>
+            <button type="button" class="mock-menu-item danger" role="menuitem">Sign out</button>
+          </div>
+        </div>
       </div>
     </div>
   `;
 
   themeToggleEl = document.querySelector("#theme-toggle");
+  themeModeTextEl = document.querySelector("#theme-mode-text");
+  mockMenuButtonEl = document.querySelector("#mock-menu-button");
+  mockMenuPanelEl = document.querySelector("#mock-menu-panel");
 }
 
 function setTheme(theme) {
@@ -129,11 +196,16 @@ function setTheme(theme) {
 
   if (themeToggleEl) {
     const isDark = theme === "dark";
-    themeToggleEl.textContent = isDark ? "Light mode" : "Dark mode";
     themeToggleEl.setAttribute(
       "aria-label",
-      isDark ? "Enable light mode" : "Enable dark mode"
+      isDark ? "Switch to light mode" : "Switch to dark mode"
     );
+    themeToggleEl.setAttribute("aria-checked", isDark ? "true" : "false");
+    themeToggleEl.classList.toggle("is-on", isDark);
+  }
+
+  if (themeModeTextEl) {
+    themeModeTextEl.textContent = theme === "dark" ? "DARK" : "LIGHT";
   }
 }
 
@@ -452,6 +524,51 @@ function renderFoodRatings() {
   });
 }
 
+function setupMockMenu() {
+  if (!mockMenuButtonEl || !mockMenuPanelEl) {
+    return;
+  }
+
+  const closeMenu = () => {
+    mockMenuPanelEl.classList.remove("is-open");
+    mockMenuButtonEl.setAttribute("aria-expanded", "false");
+  };
+
+  const openMenu = () => {
+    mockMenuPanelEl.classList.add("is-open");
+    mockMenuButtonEl.setAttribute("aria-expanded", "true");
+  };
+
+  mockMenuButtonEl.addEventListener("click", () => {
+    const isOpen = mockMenuPanelEl.classList.contains("is-open");
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!mockMenuPanelEl.classList.contains("is-open")) {
+      return;
+    }
+    const target = event.target;
+    if (!(target instanceof Element)) {
+      return;
+    }
+    if (target.closest(".mock-menu")) {
+      return;
+    }
+    closeMenu();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+}
+
 if (legacyToggleEl) {
   const savedLegacyPreference = localStorage.getItem("showLegacyEntries");
   const shouldShowLegacy = savedLegacyPreference === null
@@ -512,6 +629,7 @@ setupCopyLinkButton();
 setupKeyboardShortcuts();
 setupDirectionsTool();
 renderFoodRatings();
+setupMockMenu();
 
 if (themeToggleEl) {
   themeToggleEl.addEventListener("click", () => {

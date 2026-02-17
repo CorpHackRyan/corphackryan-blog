@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://corphackryan.github.io/2026_tech_blog/sitemap.xml
+Sitemap: https://corphackryan.github.io/corphackryan-blog/sitemap.xml

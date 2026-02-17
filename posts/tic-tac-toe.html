@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Play a simple Tic Tac Toe game built in vanilla JavaScript."
+    />
+    <meta name="author" content="CorpHackRyan" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="CorpHackRyan" />
+    <meta property="og:title" content="Tic Tac Toe | CorpHackRyan" />
+    <meta
+      property="og:description"
+      content="A quick browser Tic Tac Toe game built with HTML, CSS, and JS."
+    />
+    <meta property="og:image" content="../assets/images/og-default.svg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Tic Tac Toe | CorpHackRyan" />
+    <meta
+      property="twitter:description"
+      content="A quick browser Tic Tac Toe game built with HTML, CSS, and JS."
+    />
+    <meta property="twitter:image" content="../assets/images/og-default.svg" />
+    <title>Tic Tac Toe | CorpHackRyan</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html" aria-label="CorpHackRyan home"
+          >CorpHackRyan</a
+        >
+      </div>
+    </header>
+
+    <main class="article-layout">
+      <div class="container">
+        <a class="back-link" href="../index.html">← Back to home</a>
+
+        <article class="article">
+          <header class="article-header">
+            <p class="tag">Games</p>
+            <h1>Tic Tac Toe</h1>
+            <div class="article-meta">
+              <span>February 17, 2026</span>
+              <span>•</span>
+              <span>Vanilla JavaScript</span>
+              <span>•</span>
+              <span>2 min play</span>
+            </div>
+          </header>
+
+          <section class="article-content">
+            <p>Quick local two-player board. Click any square to start.</p>
+
+            <div class="ttt-card">
+              <p id="ttt-status" class="ttt-status">Turn: X</p>
+              <div class="ttt-grid" role="grid" aria-label="Tic Tac Toe board">
+                <button class="ttt-cell" data-cell-index="0" aria-label="Cell 1"></button>
+                <button class="ttt-cell" data-cell-index="1" aria-label="Cell 2"></button>
+                <button class="ttt-cell" data-cell-index="2" aria-label="Cell 3"></button>
+                <button class="ttt-cell" data-cell-index="3" aria-label="Cell 4"></button>
+                <button class="ttt-cell" data-cell-index="4" aria-label="Cell 5"></button>
+                <button class="ttt-cell" data-cell-index="5" aria-label="Cell 6"></button>
+                <button class="ttt-cell" data-cell-index="6" aria-label="Cell 7"></button>
+                <button class="ttt-cell" data-cell-index="7" aria-label="Cell 8"></button>
+                <button class="ttt-cell" data-cell-index="8" aria-label="Cell 9"></button>
+              </div>
+              <div class="ttt-controls">
+                <button id="ttt-reset" class="ttt-reset-btn" type="button">Reset game</button>
+              </div>
+            </div>
+
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><strong>CorpHackRyan</strong> • Blog</p>
+        <p class="meta">© <span id="year"></span> All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/scripts/app.js"></script>
+    <script src="../assets/scripts/tic-tac-toe.js"></script>
+  </body>
+</html>
