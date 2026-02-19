@@ -97,8 +97,7 @@ function renderGlobalHeader() {
   const isHomePage = prefix === "";
   const homeHref = isHomePage ? "#" : `${prefix}index.html`;
   const latestHref = isHomePage ? "#latest" : `${prefix}index.html#latest`;
-  const localHref = isHomePage ? "#local-area" : `${prefix}index.html#local-area`;
-  const aboutHref = isHomePage ? "#about" : `${prefix}index.html#about`;
+  const gomblinHref = `${prefix}posts/gomblin.html`;
 
   headerEl.innerHTML = `
     <div class="container nav-wrap">
@@ -117,6 +116,10 @@ function renderGlobalHeader() {
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v2H3V5zm0 6h12v2H3v-2zm0 6h18v2H3v-2z"/></svg>
             <span>Latest</span>
           </a>
+          <a class="nav-item-link" href="${prefix}posts/entertainment.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v10h16V7H4Zm4 2 8 3-8 3V9Z"/></svg>
+            <span>Entertainment</span>
+          </a>
           <a class="nav-item-link" href="${prefix}posts/exercise-log.html">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.57 14.86 18 12.29V10a2 2 0 0 0-2-2h-2.29l-2.57-2.57a1.5 1.5 0 0 0-2.12 0L7.29 7H5a2 2 0 0 0-2 2v2.29l-2.57 2.57a1.5 1.5 0 0 0 0 2.12L3 18.71V21a2 2 0 0 0 2 2h2.29l2.57 2.57a1.5 1.5 0 0 0 2.12 0L13.71 23H16a2 2 0 0 0 2-2v-2.29l2.57-2.57a1.5 1.5 0 0 0 0-2.12ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg>
             <span>Exercise</span>
@@ -125,21 +128,13 @@ function renderGlobalHeader() {
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v9a2 2 0 0 1-2 2v9H3v-9a2 2 0 0 1-2-2V2h2v4h2V2h2Zm7 0h2v20h-2v-8h-2V2h2v10h2V2Zm8 0v20h-2v-8h-2V2h2v10h2V2h2Z"/></svg>
             <span>Food</span>
           </a>
-          <a class="nav-item-link" href="${prefix}posts/entertainment.html">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v10h16V7H4Zm4 2 8 3-8 3V9Z"/></svg>
-            <span>Entertainment</span>
+          <a class="nav-item-link" href="${gomblinHref}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9a4.98 4.98 0 0 0-3.2 1.15A4.98 4.98 0 0 0 12 2a5 5 0 0 0-1.8 9.66A4.99 4.99 0 0 0 7 21h4v1a1 1 0 1 0 2 0v-1h4a5 5 0 0 0-3.2-9.34A4.97 4.97 0 0 0 17 9z"/></svg>
+            <span>Gomblin'</span>
           </a>
           <a class="nav-item-link" href="${prefix}posts/music.html">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11.55A4 4 0 1 0 14 18V8h6V3h-8Z"/></svg>
             <span>Music</span>
-          </a>
-          <a class="nav-item-link" href="${localHref}">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9a4.98 4.98 0 0 0-3.2 1.15A4.98 4.98 0 0 0 12 2a5 5 0 0 0-1.8 9.66A4.99 4.99 0 0 0 7 21h4v1a1 1 0 1 0 2 0v-1h4a5 5 0 0 0-3.2-9.34A4.97 4.97 0 0 0 17 9z"/></svg>
-            <span>Gomblin'</span>
-          </a>
-          <a class="nav-item-link" href="${aboutHref}">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 15h-2v-6h2Zm-1-8.2a1.2 1.2 0 1 1 1.2-1.2A1.2 1.2 0 0 1 12 8.8Z"/></svg>
-            <span>About</span>
           </a>
         </nav>
         <div class="theme-switch-wrap">
@@ -569,6 +564,42 @@ function setupMockMenu() {
   });
 }
 
+function scrollToLatestSection() {
+  const latestSection = document.querySelector("#latest");
+  const latestArticlesAnchor = document.querySelector("#latest .section-title-row");
+  const headerEl = document.querySelector(".site-header");
+  const targetEl = latestArticlesAnchor || latestSection;
+  if (!targetEl || !headerEl) {
+    return;
+  }
+
+  const headerHeight = headerEl.getBoundingClientRect().height;
+  const targetY = targetEl.getBoundingClientRect().top + window.scrollY - headerHeight - 6;
+  window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+}
+
+function setupLatestAnchorOffset() {
+  const latestSection = document.querySelector("#latest");
+  if (!latestSection) {
+    return;
+  }
+
+  const samePageLatestLinks = document.querySelectorAll('a[href="#latest"]');
+  samePageLatestLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      scrollToLatestSection();
+      history.replaceState(null, "", "#latest");
+    });
+  });
+
+  if (window.location.hash === "#latest") {
+    window.requestAnimationFrame(() => {
+      scrollToLatestSection();
+    });
+  }
+}
+
 if (legacyToggleEl) {
   const savedLegacyPreference = localStorage.getItem("showLegacyEntries");
   const shouldShowLegacy = savedLegacyPreference === null
@@ -630,6 +661,7 @@ setupKeyboardShortcuts();
 setupDirectionsTool();
 renderFoodRatings();
 setupMockMenu();
+setupLatestAnchorOffset();
 
 if (themeToggleEl) {
   themeToggleEl.addEventListener("click", () => {
