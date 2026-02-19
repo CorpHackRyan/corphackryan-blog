@@ -108,6 +108,14 @@
                 <tbody>
                   <tr>
                     <td>February 18, 2026</td>
+                    <td>Walk</td>
+                    <td>1.75 miles</td>
+                    <td>30:00</td>
+                    <td>17:09</td>
+                    <td>Outdoor walk</td>
+                  </tr>
+                  <tr>
+                    <td>February 17, 2026</td>
                     <td>Swim</td>
                     <td>500 yd</td>
                     <td>16:30</td>
@@ -128,10 +136,29 @@
                 </tbody>
               </table>
             </div>
+
+            <div class="exercise-publish-actions">
+              <button id="exercise-publish-btn" class="exercise-publish-btn" type="button">
+                Publish Snapshot (Preview)
+              </button>
+            </div>
           </section>
         </article>
       </div>
     </main>
+
+    <div id="exercise-snapshot-modal" class="exercise-snapshot-modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="exercise-snapshot-title">
+      <div class="exercise-snapshot-backdrop" data-close-snapshot="true"></div>
+      <div class="exercise-snapshot-panel">
+        <div class="exercise-snapshot-header">
+          <h2 id="exercise-snapshot-title">Exercise Snapshot Preview</h2>
+          <button id="exercise-snapshot-close" class="exercise-snapshot-close" type="button" aria-label="Close preview">
+            ×
+          </button>
+        </div>
+        <div id="exercise-snapshot-content" class="exercise-snapshot-content"></div>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <div class="container footer-inner">
@@ -141,5 +168,8 @@
     </footer>
 
     <script src="../assets/scripts/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="../assets/scripts/exercise-capture.js"></script>
   </body>
 </html>

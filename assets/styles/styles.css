@@ -60,6 +60,7 @@ main {
 .site-header {
   position: sticky;
   top: 0;
+  z-index: 1000;
   backdrop-filter: blur(8px);
   background: var(--header-bg);
   border-bottom: 1px solid var(--line);
@@ -1371,6 +1372,139 @@ body.is-loaded .post-grid .post-card {
 
 .exercise-log-table tbody tr:last-child td {
   border-bottom: 0;
+}
+
+.exercise-publish-actions {
+  margin-top: 0.9rem;
+}
+
+.exercise-publish-btn {
+  border: 1px solid var(--line);
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--accent) 26%, var(--card)),
+    color-mix(in srgb, var(--accent-2) 22%, var(--card))
+  );
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.56rem 0.9rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease;
+}
+
+.exercise-publish-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+.exercise-snapshot-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+.exercise-snapshot-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 8, 14, 0.62);
+}
+
+.exercise-snapshot-panel {
+  position: relative;
+  width: min(960px, 92vw);
+  max-height: 88vh;
+  margin: 4vh auto 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.exercise-snapshot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.exercise-snapshot-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.exercise-snapshot-close {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.exercise-snapshot-close:hover {
+  border-color: var(--accent);
+}
+
+.exercise-snapshot-content {
+  padding: 0.9rem;
+  overflow: auto;
+}
+
+.exercise-snapshot-content canvas,
+.exercise-snapshot-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
+.snapshot-capture-host {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1;
+}
+
+.exercise-log-table-wrap.snapshot-capture {
+  background: #ffffff !important;
+  border: 1px solid #cfd6e3 !important;
+  box-shadow: none !important;
+}
+
+.exercise-log-table-wrap.snapshot-capture .exercise-log-table {
+  background: #ffffff !important;
+  color: #14141a !important;
+}
+
+.exercise-log-table-wrap.snapshot-capture .exercise-log-table thead th {
+  background: #eaf0ff !important;
+  color: #14141a !important;
+  border-bottom: 1px solid #cfd6e3 !important;
+}
+
+.exercise-log-table-wrap.snapshot-capture .exercise-log-table tbody td {
+  background: #ffffff !important;
+  color: #14141a !important;
+  border-bottom: 1px solid #e4e8f0 !important;
+}
+
+.exercise-log-table-wrap.snapshot-capture .exercise-log-table tbody tr:nth-child(even) td {
+  background: #f7f9fd !important;
 }
 
 .note-key {
